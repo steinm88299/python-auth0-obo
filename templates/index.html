@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth0 OBO Demo</title>
+</head>
+<body>
+    <h2>Auth0 OBO Token Exchange Demo</h2>
+
+    {% if user %}
+        <p>Logged in as: <strong>{{ user }}</strong></p>
+        <p><a href="/token">View token claims</a> | <a href="/logout">Logout</a></p>
+
+        <hr>
+        <h3>Orders API</h3>
+
+        <form action="/orders/get" method="post">
+            <button type="submit">Get Orders</button>
+        </form>
+        <br>
+        <form action="/orders/create" method="post">
+            <button type="submit">Create Order</button>
+        </form>
+        <br>
+        <form action="/orders/delete/1" method="post">
+            <button type="submit">Delete Order 1</button>
+        </form>
+        <br>
+        <form action="/orders/payment" method="post">
+            <button type="submit">Request Payment</button>
+        </form>
+
+        {% if result %}
+            <hr>
+            <h3>Result</h3>
+            <pre>{{ result }}</pre>
+        {% endif %}
+
+        {% if error %}
+            <hr>
+            <h3>Error</h3>
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+    {% else %}
+        <p><a href="/login">Login</a></p>
+    {% endif %}
+
+</body>
+</html>
